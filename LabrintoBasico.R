@@ -54,7 +54,7 @@ repeat{
         atual_j <- atual_j+Move[2]
         next
       } else {
-        # (>=1, 0) = inválido (caminho não deve atravessar paredes)
+        # (0, >=1) = inválido (caminho não deve atravessar paredes)
         next
       }
     }
