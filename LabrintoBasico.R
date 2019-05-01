@@ -33,7 +33,7 @@ repeat{
     # Isso proporciona maior ramificação a partir da origem
     # Contudo, se 10^Exp for muito baixo, às vezes é impossível completar o labirinto
     CountExp <- CountExp + 1 
-    if(CountExp >= 2*10^Exp){
+    if(CountExp >= 10^Exp){
       CountExp <- 0
       Exp <- Exp + 1
     }
