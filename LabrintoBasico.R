@@ -35,26 +35,26 @@ repeat{
   }
   
   # Checar se movimento é válido
-  # (atual, atual+move, atual+[move/2])
-  # (1, 0, 0) OK -> (1, 2, 1)
-  # (1, 2, 1) OK -> (1, 2, 1)
-  # (1, 0, 1) NOT -> repeat
+  #   com base nas próximas casas (atual + Move/2) e (atual + Move)
+  # Dois espaços em branco (0, 0) = válido (avança caminho novo)
+  # Dois espaços tomados (>=1, >=1) = válido (retorna em caminho pré-existente)
+  # Um espaço em branco e um espaço tomado (0, >=1) = inválido (caminho não deve atravessar paredes)
   if((atual_i + Move[1]) %in% 1:altura && (atual_j + Move[2]) %in% 1:largura){
     if(m[(atual_i+Move[1]), (atual_j+Move[2])]==0){
-      # (1, 0, 0) OK -> (1, 1, 1)
+      # (0, 0) = válido (avança)
       m[(atual_i+Move[1]), (atual_j+Move[2])] <- 1
       m[(atual_i+Move[1]/2), (atual_j+Move[2]/2)] <- 2
       atual_i <- atual_i+Move[1]
       atual_j <- atual_j+Move[2]
       next
     } else {
-      # (1, 2, 1) OK -> (1, 2, 1)
+      # (>=1, >=1) = válido (retorna em caminho pré-existente)
       if(m[(atual_i+Move[1]/2), (atual_j+Move[2]/2)]==2){
         atual_i <- atual_i+Move[1]
         atual_j <- atual_j+Move[2]
         next
       } else {
-        # (1, 0, 1) REPEAT
+        # (>=1, 0) = inválido (caminho não deve atravessar paredes)
         next
       }
     }
