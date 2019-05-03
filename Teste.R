@@ -179,6 +179,7 @@ Step_count <- 3
 Passos <- 0
 Registro_passos <- 0
 Chegadas <- 0
+encruzilhadas <- 0
 
 # S T A R T
 
@@ -258,8 +259,10 @@ repeat{
           atual_j <- atual_j+Move[2]
           
           # Se o movimento termina em encruzilhada, considero que saímos do beco, então desligo a notificação
+          # Adicionalmente, adiciono a presença da encruzilhada numa contagem
           if(sum(m[(atual_i - 1):(atual_i + 1), (atual_j - 1):(atual_j + 1)]==0) <= 5){
             notifica <- F
+            encruzilhadas <- encruzilhadas + 1
           }
           
           # Sela definitivamente a entrada para o caminho do beco
@@ -279,6 +282,8 @@ repeat{
 
 Dificuldade <- sum(Registro_passos)/(length(Registro_passos)-1)
 Dificuldade <- round(Dificuldade/1000, 2)
+encruzilhadas <- encruzilhadas/(length(Registro_passos)-1) # número de encruzilhadas por caminho
+Dificuldade <- Dificuldade*encruzilhadas/1000
 
 print(paste0("Número de passos médio: ", Dificuldade))
 
