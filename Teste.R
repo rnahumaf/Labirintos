@@ -214,7 +214,9 @@ repeat{
   }
   
   # Identificar se chegou num beco sem saída
-  if(sum(m(atual_i ---------------------------------------------------------------------
+  if(sum(m[(atual_i - 1):(atual_i + 1), (atual_j - 1):(atual_j + 1)]==0) == 7){
+    notifica <- T
+  }
   
   # Contabiliza os passos
   Passos <- Passos + 1
