@@ -20,7 +20,7 @@ Estrategia <- function(E){
     Estrategia_C <<- F
   }
 }
-Estrategia("B")
+Estrategia("A")
 
 # Trash variables
 m2 <- m
